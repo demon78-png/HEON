@@ -1,0 +1,24 @@
+HEON — PART 18: ADVANCED SECURITY, AUTHORIZATION, ANTI-ABUSE, AND PRIVACY
+
+Perform a security-focused review of the real HEON codebase. Do not claim the system is fully secure or penetration-tested unless qualified testing has actually been performed. Fix verified issues with minimal, reviewable changes.
+
+THREAT MODEL
+Identify assets, trust boundaries, user roles, APIs, storage systems, payment services, downloads, notifications, social features, admin operations, and cloud-session integrations. Prioritize account takeover, privilege escalation, data leakage, malicious uploads, unsafe downloads, payment fraud, abuse, and denial of service.
+
+AUTHENTICATION AND AUTHORIZATION
+Enforce authentication and ownership server-side. Use role-based permissions on every protected API and database operation. Never trust client-side admin flags, user IDs, premium flags, prices, scores, or transaction status. Do not auto-promote users or expose admin registration. Use secure session expiration/revocation and safe password reset where applicable.
+
+INPUTS, APIS, AND WEB SECURITY
+Validate and normalize all input on the server. Use parameterized database access and safe output encoding. Configure CORS narrowly, use appropriate CSRF protection for cookie-based sessions, secure headers, rate limiting, request size limits, and safe error responses. Protect against injection, IDOR, XSS, SSRF, open redirects, unsafe file paths, and mass assignment as applicable to the architecture.
+
+SECRETS AND DATA
+Keep secrets in server-side environment/secret management. Never commit credentials or embed privileged keys in frontend builds. Redact tokens and personal data from logs. Encrypt traffic and use storage/database protections appropriate to the provider. Minimize collection, define retention, and support required export/deletion processes.
+
+PAYMENTS, FILES, AND ABUSE
+Verify payment receipts and webhooks server-side. Protect downloads with authorization, checksums/signatures where available, and safe signed URLs. Validate uploaded files and restrict access. Apply abuse controls to authentication, social actions, rewards, leaderboards, tickets, and expensive services.
+
+AUDIT AND RECOVERY
+Record privileged actions and security-relevant events without logging secrets. Document backups, restore tests, incident response, dependency updates, and key rotation. Keep sensitive admin tools behind least-privilege access.
+
+TESTS AND REPORT
+Run available dependency checks, static analysis, authorization tests, and targeted regression tests. List each finding with severity, evidence, fix, and remaining risk. Never fabricate scan results or claim compliance certification without evidence.

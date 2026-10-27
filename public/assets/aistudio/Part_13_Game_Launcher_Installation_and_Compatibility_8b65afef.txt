@@ -1,0 +1,21 @@
+HEON — PART 13: GAME LAUNCHER, INSTALLATION MANAGEMENT, COMPATIBILITY, AND GAME EXECUTION
+
+Inspect HEON's game catalog, artifact metadata, download manager, library, and platform architecture before implementing launcher behavior.
+
+GAME STATES
+Represent states precisely: available, unsupported, download required, downloading, downloaded, installation required, installing, installed, update available, launching, running, failed, or unavailable, but only use states applicable to the actual platform. Do not confuse a downloaded file with an installed or playable game.
+
+LAUNCHER
+Create a launch panel with actual game title/icon, version, platform, compatibility status, install path/storage details where the platform exposes them, launch/update/repair/uninstall actions where supported, and useful progress/error messages. Make actions idempotent and prevent double launches where inappropriate.
+
+COMPATIBILITY
+Use real metadata and device capabilities where available. Display minimum/recommended OS, architecture, RAM, storage, graphics requirements, and known restrictions only when supplied or verified. Distinguish unknown compatibility from confirmed incompatibility. Do not promise that every Windows, console, or Android game can run inside HEON.
+
+EXECUTION ADAPTERS
+Use clear provider/platform adapters for web games, native Android apps, authorized downloadable PC games, embedded games, or remote sessions. Each adapter must expose supported operations and actual errors. A browser-based app cannot arbitrarily launch installed software, install APKs silently, or access unrestricted local files. Native installation must follow Android's package-installation and user-consent rules.
+
+SECURITY AND ADMIN
+Validate artifacts and metadata on the backend, verify checksums/signatures where available, restrict launch to permitted artifacts, and avoid arbitrary shell commands or unsafe deep links. Admins may configure compatibility metadata and artifact availability only through protected server-side operations.
+
+TESTS
+Test missing artifacts, unsupported devices, failed installation, cancellation, outdated versions, launch failures, permissions, storage limits, and Android/browser boundaries. Report which adapters are genuinely implemented and which require native code or an external service.

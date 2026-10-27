@@ -1,0 +1,21 @@
+HEON — PART 03: GAME DETAILS, PLAYER LIBRARY, WISHLISTS, AND AUTHORIZED DOWNLOADS
+
+Continue the existing HEON project in Google AI Studio. Do not start a separate project, replace the app with a demo, or remove working features. First inspect the current code, architecture, data models, routes, design system, and existing components. Extend what is already present and preserve the established HEON identity.
+
+BRAND AND DESIGN
+Use the existing HEON dark gaming design: background #08090D, secondary surface #11131A, cards #191C26, neon lime #B9FF39, purple #8B5CF6, blue #38BDF8, primary text #F7F8FC, secondary text #A1A7B6. Keep the interface premium, cinematic, responsive, accessible, and especially usable on Android-sized screens. Use consistent spacing, typography, icons, loading skeletons, empty states, and clear error messages.
+
+GAME DETAILS
+Create a complete game details page with cover art, screenshots or trailers when available, title, developer/publisher, genre, supported platforms, supported Android version or hardware requirements where known, file size where verified, version, release/update dates where available, description, features, controls, ratings/reviews only when backed by real data, content notices, language, compatibility, and related games. Provide clear primary actions whose labels and behavior reflect the actual game state: Add to Library, Remove from Library, Wishlist, Download, Resume Download, Update, Install, or Play. Do not show impossible actions for a platform or artifact that is not supported.
+
+LIBRARY AND WISHLIST
+Allow signed-in players to save games to a personal library and wishlist, remove items, search and filter their saved games, sort by recently added/name/updated when data supports it, and view recently opened or viewed games. Persist account-owned data through the configured backend. If a guest mode exists, clearly explain which items are local-only and how they can be synced after sign-in. Handle duplicate actions idempotently and show useful empty, loading, offline, and failure states.
+
+DOWNLOADS
+Implement downloads only for files HEON is authorized to distribute. Use real catalog metadata and validated artifact URLs. Build a download queue with queued/downloading/paused/failed/completed/cancelled states, retry, pause/resume where supported, cancel, file-size display when known, progress based on actual bytes or a real downloader event, integrity checks when checksums are provided, and safe storage handling. Never simulate progress or mark a download complete before verification. Do not scrape or distribute copyrighted games without permission. Do not claim that a browser-based app can perform unrestricted native Android background downloads; document platform limitations and use an appropriate native implementation if needed.
+
+DATA AND SECURITY
+Define suitable entities for games, game media, platform builds, user-library entries, wishlist entries, download records, versions, and artifact metadata. Validate every input on the server. Enforce user ownership for private library and download history. Do not trust a user ID sent by the client as proof of identity. Store files in approved object storage/CDN when configured and issue short-lived signed URLs where appropriate. Never expose storage credentials or secret keys in frontend code.
+
+QUALITY
+Test game details with complete, missing, malformed, unavailable, and restricted metadata; library add/remove; wishlist persistence; duplicate requests; authorization failures; download interruption; retry; low storage; checksum mismatch; offline conditions; and Android viewport sizes. Keep existing working behavior. Report changed files, actual tests run, limitations, and any configuration still required. Do not state that a feature works unless it has been implemented and verified.

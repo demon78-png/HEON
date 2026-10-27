@@ -1,0 +1,17 @@
+HEON — PART 04: USER ACCOUNTS, AUTHENTICATION, AND PLAYER PROFILES
+
+Continue the existing HEON project. Inspect current authentication, routing, state management, database schema, and account screens before editing. Preserve working functionality and the HEON visual system.
+
+Build a complete account experience: sign-up, sign-in, sign-out, email verification if supported, password reset, session persistence, session expiry, profile viewing/editing, username and avatar selection, account preferences, account security, and account deletion/export where required by applicable law and product design. Provide clear validation, accessible forms, loading states, password visibility controls, and helpful error messages without exposing sensitive internal details.
+
+SECURITY REQUIREMENTS
+Use a reputable configured authentication provider or a properly implemented backend authentication system. Never store plaintext passwords, place private secrets in frontend code, log passwords or tokens, or trust client-side role fields. Use secure session handling appropriate to the platform; protect authenticated routes and enforce authorization on the server for every protected operation. Apply rate limiting and abuse protection to sign-in, registration, password recovery, and verification endpoints. Avoid leaking whether an arbitrary email address belongs to an account when the security design calls for generic responses. Ensure password reset tokens are short-lived, single-use, and handled securely.
+
+PROFILE AND PRIVACY
+Profiles should include only necessary information such as display name, username, avatar, short bio if appropriate, account creation date if useful, and privacy settings. Validate usernames, including length and allowed characters; show understandable validation before submission. Prevent duplicate usernames using a server-side uniqueness constraint. Allow users to control public profile visibility and optional social activity. Do not expose private email addresses, account identifiers, security settings, or sensitive profile data to other players. Provide account deletion confirmation and clearly describe any retention that is legally or operationally required.
+
+GUESTS AND SYNC
+If guest mode is supported, label its limitations clearly. Do not imply guest data is safely backed up to the cloud. Define a safe account-linking or migration path that avoids overwriting or duplicating user data.
+
+TESTS AND REPORTING
+Test valid and invalid registration, duplicate usernames, wrong credentials, verification, expired/reset tokens, sign-out, expired sessions, route protection, profile updates, ownership, deletion, network failure, and small Android screens. State which provider and backend are actually configured. Never claim authentication is real if the app only has mock screens.

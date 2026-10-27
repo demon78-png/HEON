@@ -1,0 +1,21 @@
+HEON — PART 15: GAME CATALOG, CONTENT MANAGEMENT, PUBLISHING, VERSIONING, AND CDN
+
+Extend the existing HEON catalog and admin dashboard. Inspect the current data model and media pipeline before changes. Use only game content and downloadable artifacts that HEON is authorized to publish.
+
+CATALOG MODEL
+Define normalized game records for title, slug, descriptions, developer/publisher, categories, tags, supported platforms, compatibility, release information, languages, media, age/content notices where appropriate, availability, and publication state. Keep optional or unknown fields genuinely optional; never fabricate metadata, ratings, release dates, file sizes, or compatibility.
+
+ADMIN PUBLISHING WORKFLOW
+Create draft, review, published, archived, and rejected states as appropriate. Validate required metadata, image dimensions/types, artifact metadata, platform support, version numbers, checksum/signature fields, and licensing/authorization status. Provide preview before publication and a safe rollback or unpublish process. Restrict every operation on the server to authorized staff.
+
+MEDIA AND ARTIFACTS
+Use configured object storage and CDN only when credentials and infrastructure exist. Validate uploads, enforce size/type limits, use private storage for unpublished content, and deliver published content using appropriate public or short-lived signed URLs. Never expose storage secrets in frontend code. Verify checksums or signatures where available. Avoid serving executable files from unsafe origins.
+
+VERSIONS AND CACHE
+Track version history, release notes, compatibility changes, and artifact status. Invalidate catalog and CDN caches after publishing or updating content. Prevent stale metadata from pointing to deleted or invalid artifacts. Make rollout/rollback behavior explicit and auditable.
+
+COPYRIGHT AND REPORTING
+Require evidence of publishing authorization where relevant. Provide a process for rights complaints and content removal. Do not scrape, mirror, or distribute commercial games without permission.
+
+ANALYTICS AND TESTS
+Show only actual views, downloads, errors, and publication metrics. Test draft permissions, malformed metadata, unsafe uploads, failed artifact validation, signed URL expiry, cache invalidation, rollback, and concurrent edits. Report which storage/CDN services are actually configured.

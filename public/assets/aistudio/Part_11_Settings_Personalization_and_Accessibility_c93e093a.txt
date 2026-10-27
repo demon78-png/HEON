@@ -1,0 +1,21 @@
+HEON — PART 11: SETTINGS, PERSONALIZATION, ACCESSIBILITY, LANGUAGE, AND DEVICE PREFERENCES
+
+Continue the existing HEON project and create a coherent settings center that reflects actual supported capabilities. Reuse the HEON design system while prioritizing clarity and mobile accessibility.
+
+SETTINGS SECTIONS
+Organize settings into Appearance, Accessibility, Language and Region, Notifications, Downloads and Network, Privacy, Account and Security, Social Preferences, Storage and Cache, Premium and Billing, Help and Legal, About, and Reset Settings where applicable. Hide or label settings that depend on missing platform support; do not add switches that have no effect.
+
+PERSONALIZATION
+Support the established dark theme and optional additional themes only if implemented consistently. Persist preference locally or to the account according to the setting's scope. Avoid resetting account-level preferences when clearing local cache. Provide safe confirmation for destructive resets.
+
+ACCESSIBILITY
+Use semantic controls, visible focus states, screen-reader labels, adequate contrast, scalable text, reduced-motion preferences, touch targets suitable for Android, and keyboard navigation where relevant. Do not communicate state by color alone. Respect OS accessibility preferences where supported.
+
+LOCALIZATION
+Prepare text for localization rather than scattering hard-coded strings. Format dates, numbers, and currencies using the selected locale. Do not claim a language is fully supported until all relevant screens and error messages are translated. Keep country and currency selection separate from payment-provider eligibility.
+
+PRIVACY AND SECURITY
+Provide account privacy controls, session/security options, notification preferences, and links to actual privacy/legal documents. Explain which settings are local, account-synced, operating-system-controlled, or provider-controlled. Do not imply the app can change Android system settings without user action.
+
+TESTS
+Test persistence, account switching, sign-out, reset behavior, small screens, large text, screen readers, reduced motion, language changes, and missing settings. Report any control that is not connected to a real behavior.

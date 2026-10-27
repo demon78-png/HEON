@@ -1,0 +1,21 @@
+HEON — PART 06: PAYMENTS, PREMIUM FEATURES, AND TRANSACTION MANAGEMENT
+
+Continue the current HEON app and inspect the existing payment, subscription, entitlement, account, and admin code before making changes. Build payment functionality only with a supported provider and a real, securely configured backend. Do not pretend to process money in a mock checkout.
+
+PREMIUM PRODUCT DESIGN
+Create a clear premium screen describing each plan, price, billing interval, benefits, renewal terms, cancellation method, eligibility, and applicable restrictions. Make prices and plan availability configurable from trusted server data. Explain exactly which features require premium. Avoid deceptive countdowns, fake scarcity, hidden fees, or confusing opt-outs. Keep the basic app usable where possible.
+
+CHECKOUT AND VERIFICATION
+For digital features sold inside an Android app, evaluate and use Google Play Billing where required by applicable store policies. Use a regional payment provider only if the merchant account, country, currency, product type, and provider integration are genuinely supported. Create checkout sessions through the backend; verify every purchase or subscription server-side using provider APIs, signed receipts, webhooks, or equivalent trusted evidence. The client must never grant premium solely because it receives a success screen or client-supplied status.
+
+TRANSACTIONS AND SUBSCRIPTIONS
+Provide transaction history with actual status, amount, currency, date, product, and a safe reference. Support pending, successful, failed, refunded, cancelled, and disputed states where applicable. Allow users to restore eligible purchases and manage/cancel subscriptions through the proper provider flow. Handle renewal, grace periods, expiration, refund, chargeback, duplicate webhook, delayed confirmation, and revoked entitlement. Never store card numbers, CVV, or other payment credentials. Do not expose provider secrets in frontend code or logs.
+
+ENTITLEMENTS
+Create one central entitlement service used by the UI and protected backend operations. Check premium access on the server for downloads, cloud sessions, or other restricted services. Do not hard-code a premium flag in local storage as authoritative. Explain payment status honestly when the provider is unavailable.
+
+ADMIN AND COMPLIANCE
+Provide role-restricted product/plan configuration and transaction oversight, with audit logs and limited access to sensitive data. Do not expose full payment credentials or unnecessary personal details. Include appropriate terms, privacy, cancellation, and refund information.
+
+TESTS
+Use provider sandbox/test mode where available. Test successful and failed checkout, pending transactions, duplicate webhooks, invalid receipts, refunds, renewals, expiration, restore purchases, currency formatting, and unauthorized entitlement attempts. Clearly report whether live payments are configured, test-only, mocked, or not implemented.

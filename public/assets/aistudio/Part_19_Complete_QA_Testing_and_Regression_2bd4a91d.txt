@@ -1,0 +1,27 @@
+HEON — PART 19: COMPLETE QA, AUTOMATED TESTING, BUG FIXING, PERFORMANCE VALIDATION, AND REGRESSION TESTING
+
+Conduct a comprehensive, evidence-based QA pass over the existing HEON project. Inspect the actual repository and runtime first. Preserve features and avoid large rewrites unless evidence shows they are necessary.
+
+FEATURE INVENTORY
+Create a feature matrix with each major feature marked as implemented and verified, implemented but unverified, partially implemented, mock-only, configuration-dependent, blocked, or not implemented. Include evidence, affected files, required credentials/services, and test coverage. Do not confuse a visible screen with a working backend feature.
+
+TEST LAYERS
+Run available formatting, lint, type checks, unit tests, integration tests, API tests, database/migration tests, end-to-end UI tests, and production build checks. If a test framework is absent, recommend a suitable one and add it carefully where feasible. Do not invent successful output.
+
+CORE FLOWS
+Test registration, sign-in/out, password recovery, profile changes, search, filters, catalog details, library/wishlist, downloads, update flows, payment sandbox flows, entitlement checks, notifications, admin authorization, support tickets, privacy controls, social features, achievements, rewards, offline sync, and cloud sessions where configured. Test role boundaries and direct API calls, not just UI visibility.
+
+FAILURE AND EDGE CASES
+Cover malformed input, missing fields, empty states, slow/offline networks, API errors, expired sessions, duplicate requests, retry behavior, stale data, concurrent edits, storage limits, expired URLs, invalid receipts, permission denial, unsupported devices, and migration/rollback scenarios.
+
+ANDROID AND ACCESSIBILITY
+Check narrow Android viewports, orientation/resizing, touch targets, keyboard navigation where relevant, screen-reader labels, contrast, text scaling, reduced motion, browser compatibility, and actual device installation if available. Do not claim a device test occurred if it did not.
+
+PERFORMANCE AND SECURITY
+Measure build size, startup/rendering behavior, heavy lists, image loading, and request volume where tooling permits. Re-run relevant security and authorization checks. Avoid performance claims without evidence.
+
+DEFECT MANAGEMENT
+Record reproducible steps, expected/actual result, severity, root cause, fix, regression test, and remaining risk. Fix root causes in focused changes, then re-run impacted tests. Keep a release-blocker list.
+
+FINAL REPORT
+Summarize commands actually run, exact pass/fail results, changed files, known limitations, configuration gaps, and release readiness. Clearly distinguish a test that passed from one that could not be run. Never fabricate test results or hide unresolved critical defects.

@@ -1,0 +1,21 @@
+HEON — PART 09: PLAYER LIBRARY, DOWNLOAD MANAGER, GAME PROGRESS, AND STORAGE
+
+Inspect and extend existing HEON library and download code. Keep the distinctions between saved, wishlisted, downloaded, installed, updated, and playable items clear.
+
+PLAYER LIBRARY
+Support saved games, favorites, collections if implemented, recently viewed/opened entries where privacy settings permit, filtering, sorting, and removal. Persist account-owned data through the configured backend; clearly label local-only guest data. Avoid duplicate records and handle account changes safely.
+
+DOWNLOAD QUEUE
+Implement a real queue with queued, downloading, paused, failed, verifying, completed, and cancelled states as appropriate. Show progress only from actual byte counts or downloader callbacks. Support pause/resume/cancel/retry only where the runtime truly supports them. Validate file type and source, verify checksums/signatures when supplied, handle partial downloads safely, and avoid treating a truncated file as complete. Use approved storage and signed URLs when configured. Download only authorized game files.
+
+STORAGE AND UPDATES
+Show estimated or measured storage use only when available. Explain storage permissions and Android scoped-storage restrictions. Provide safe cleanup controls that never delete user files unexpectedly. Check for newer versions from trusted catalog metadata, explain update size where known, and avoid replacing an installed build until the new artifact is validated.
+
+PROGRESS AND SYNC
+Track game progress only where the game or provider supplies it. Define offline queue behavior and conflict resolution. Never fabricate playtime, progress, achievements, or completion. Use idempotent server operations and safe retry logic.
+
+PLATFORM LIMITATIONS
+A web app/PWA cannot automatically install arbitrary Android APKs or promise unrestricted background downloads. If native Android behavior is required, use a proper Android implementation or an appropriate wrapper with carefully scoped native plugins. APK installation must follow Android's user consent and security requirements; do not silently install packages.
+
+TESTS
+Test interrupted downloads, pause/resume, duplicate jobs, insufficient storage, checksum mismatch, unavailable files, expired signed URLs, offline sync, version upgrades, permissions, and Android device behavior. Report actual runtime limitations.

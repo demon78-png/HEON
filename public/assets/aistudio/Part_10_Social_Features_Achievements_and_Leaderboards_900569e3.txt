@@ -1,0 +1,21 @@
+HEON — PART 10: PLAYER PROFILES, SOCIAL FEATURES, ACHIEVEMENTS, AND LEADERBOARDS
+
+Extend the existing HEON project and use real authenticated accounts and backend data. Treat social features as optional and privacy-sensitive.
+
+PROFILES AND CONNECTIONS
+Provide editable display names and avatars, public profile views controlled by privacy settings, player search, friend requests or follow relationships if selected, accept/decline/remove actions, and block/report tools. Prevent impersonation and username collisions. Do not reveal private email addresses, account identifiers, location, or private activity.
+
+ACTIVITY
+If an activity feed exists, show only events the user is permitted to see. Allow appropriate privacy controls and avoid publishing sensitive actions by default. Use pagination and clear timestamps. Do not create fake users or fabricated social activity to make the platform look busy.
+
+ACHIEVEMENTS
+Create achievement definitions with title, description, icon, criteria, reward, and availability. Award progress through trusted game events or server-side verification. Make claims idempotent and prevent clients from granting themselves achievements. Display locked/unlocked states and real progress. Do not claim to verify a game's achievement unless the integration actually exists.
+
+LEADERBOARDS
+Use defined scoring rules, season/time range, pagination, ties, and timestamps. Validate scores server-side where possible and use anti-abuse protections. Mark unverified or game-reported scores appropriately. Never fabricate ranks or scores.
+
+MODERATION AND SAFETY
+Include report/block workflows, clear feedback, rate limits, abuse handling, moderator access controls, and auditable actions. Do not enable unrestricted direct messaging unless a safe moderation and reporting plan exists. Protect minors' privacy and minimize public profile data.
+
+TESTS
+Test privacy visibility, friend-request state changes, duplicate requests, blocking, reporting, invalid scores, leaderboard ties, unauthorized achievement claims, moderation permissions, and offline errors. Clearly identify integrations that require individual games or external services.

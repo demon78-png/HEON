@@ -1,0 +1,23 @@
+HEON — PART 07: SECURE ADMIN DASHBOARD, PLATFORM MANAGEMENT, AND ANALYTICS
+
+Extend the existing HEON project. Inspect authentication, database, API authorization, catalog, downloads, payments, notifications, and analytics before creating an admin interface.
+
+ADMIN OVERVIEW
+Build a protected dashboard with a responsive navigation layout and overview cards for real metrics that the backend actually provides: catalog count, published/unpublished games, registered users, downloads, active sessions, transactions, support queue, and recent audit events. Show time ranges and definitions. Use charts only when backed by real, correctly aggregated data. Include loading, empty, stale-data, permission-denied, and API-error states. Never invent counts, trends, users, purchases, or revenue.
+
+MANAGEMENT AREAS
+Provide role-restricted workflows for:
+- Game catalog: create/edit metadata, categories, media, platform builds, versioning, availability, publication status, and review.
+- Users: search and inspect permitted account fields, manage reports, apply justified restrictions, and record administrative actions.
+- Downloads: inspect real aggregate activity, failed jobs, artifact status, and storage metadata.
+- Notifications: draft, preview, publish, and retire announcements with actual delivery status.
+- Premium and transactions: configure product metadata and inspect provider-verified transaction states without exposing payment credentials.
+- Support and safety: review tickets/reports, respond, assign, and resolve with an audit trail.
+- Analytics and settings: filter verified events and change only settings supported by the backend.
+- Audit logs: record actor, action, target, timestamp, result, and safe contextual metadata.
+
+AUTHORIZATION AND SAFETY
+Enforce role-based access control server-side for every admin API and database operation. Never trust a client-side route guard or a role stored in local storage. Never automatically promote the first registered user or expose public admin registration. Use explicit secure provisioning through a documented trusted process. Require confirmation for destructive operations, use least privilege, rate-limit sensitive endpoints, validate inputs, and log privileged changes. Redact secrets and personal data from logs. Provide safe pagination and filters to prevent excessive data exposure.
+
+QUALITY
+Test non-admin access, each role boundary, direct API requests, invalid inputs, destructive confirmations, pagination, audit logging, and provider failures. Identify which metrics are real and which sections depend on missing backend integration. Do not claim analytics or management actions are live if they are only mock UI.

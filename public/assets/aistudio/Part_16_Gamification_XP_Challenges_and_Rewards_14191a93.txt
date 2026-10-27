@@ -1,0 +1,21 @@
+HEON — PART 16: GAMIFICATION, XP, PLAYER LEVELS, CHALLENGES, REWARDS, AND SEASONAL EVENTS
+
+Continue the HEON project with optional, fair gamification. Avoid gambling mechanics, paid random rewards, pay-to-win advantages, manipulative streak pressure, or deceptive reward promises.
+
+XP AND LEVELS
+Define transparent XP sources, level thresholds, maximums if applicable, and event rules. Award XP from verified server-side events or trusted integrations. Use idempotency keys and abuse limits to prevent duplicate claims. Keep the calculation in a central service and show the reason for each award.
+
+CHALLENGES
+Support daily, weekly, and longer-term challenges with clear eligibility, objective, progress, start/end times, completion criteria, and rewards. Reset schedules must use a documented timezone strategy. Prevent clients from self-reporting unverified completion. Show unavailable or expired states clearly and avoid punishing users for missed days.
+
+REWARDS AND INVENTORY
+Provide a catalog of earned cosmetics, profile decorations, badges, and other non-harmful rewards. Record claims and inventory on the backend. Never grant a reward twice because of retries. Explain whether rewards are earned, limited-time, or purchased, and keep paid products separate from random chance. Do not claim an item is owned until the server confirms it.
+
+SEASONS AND ADMIN
+Allow staff to configure seasonal events, challenges, eligibility, reward definitions, and publication dates through protected admin APIs. Record edits and avoid retroactively changing earned rewards without a clear policy. Display actual status and progress.
+
+ANTI-ABUSE AND PRIVACY
+Rate-limit claims, validate timestamps and event signatures where possible, detect duplicate events, and protect leaderboard integrity. Collect only the data required. Make participation optional and provide accessible alternatives to animation-heavy reward screens.
+
+TESTS
+Test duplicate claims, expired challenges, timezone boundaries, offline retries, invalid progress, reward revocation, season transitions, and admin permissions. Report real integrations and any mock data honestly.

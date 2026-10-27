@@ -1,0 +1,21 @@
+HEON — PART 17: PERFORMANCE, OFFLINE MODE, SYNCHRONIZATION, CACHING, AND NETWORK RESILIENCE
+
+Audit the existing HEON application before optimization. Measure actual behavior and preserve feature correctness. Do not claim a performance improvement without measurements.
+
+PERFORMANCE
+Inspect bundle size, rendering, route transitions, repeated network requests, image sizes, expensive lists, memory usage, and startup time. Use responsive image sizes, lazy loading, pagination/virtualization where suitable, caching with explicit invalidation, and code splitting when supported. Avoid excessive animations and preserve accessibility/reduced-motion behavior. Record before/after measurements where possible.
+
+OFFLINE MODE
+Define exactly which screens and data work offline. Cache only appropriate public catalog metadata and user data that can safely be stored locally. Show clear offline indicators and distinguish cached content from fresh content. Do not imply payments, account security changes, push delivery, or cloud gaming can complete offline.
+
+SYNC
+Create a durable sync queue for supported offline actions. Include operation IDs, timestamps, retry/backoff, conflict resolution, duplicate protection, authentication refresh, and safe cancellation. Do not silently overwrite newer server data. Make conflict outcomes visible when user action is required. Never allow offline local state to grant premium access, admin privileges, purchases, achievements, or rewards.
+
+DOWNLOADS AND PLATFORM
+Separate ordinary app cache from user-downloaded files. Respect Android storage rules and background-work limits. Use service workers only for supported PWA caching, with safe cache versioning and recovery from a broken update. Do not claim a PWA can do unrestricted native background work.
+
+BACKEND AND OBSERVABILITY
+Use bounded requests, pagination, timeouts, retry policies, and useful non-sensitive logs. Avoid retry storms. Track actual failures and performance metrics without collecting unnecessary personal information.
+
+TESTS
+Test airplane mode, flaky connections, stale cache, expired sessions, duplicate sync, conflicts, app restart, low storage, service-worker updates, and Android device behavior. Report what works offline and what still requires a network.

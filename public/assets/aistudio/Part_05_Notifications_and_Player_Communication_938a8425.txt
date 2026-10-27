@@ -1,0 +1,17 @@
+HEON — PART 05: NOTIFICATIONS, PUSH NOTIFICATIONS, AND PLAYER COMMUNICATION
+
+Continue the existing HEON project without replacing the app. Inspect current notification components, backend, account preferences, download manager, payment events, and admin announcement features.
+
+Implement an in-app notification center with unread/read states, mark-one-read, mark-all-read, deletion or dismissal where appropriate, timestamps, sensible grouping, deep links to relevant HEON screens, pagination for long histories, empty/loading/error states, and accessible interaction. Support event categories such as download completion/failure, game updates, account security, verified transaction events, friend/social activity if present, platform announcements, and service notices. Let users manage category preferences and distinguish essential security notices from optional promotional messages.
+
+PUSH AND ANDROID
+Use Firebase Cloud Messaging or another appropriate provider only when credentials, project configuration, backend integration, and platform setup are supplied. Request Android notification permission at the appropriate time and explain the benefit before asking. Respect denied permissions and provide a settings route. Register device tokens securely against the authenticated account, rotate/update tokens as needed, and remove invalid tokens. Send notifications from a trusted backend, never from a frontend that contains privileged credentials. Avoid duplicate delivery and include safe deep-link validation.
+
+ADMIN ANNOUNCEMENTS
+Provide a controlled admin workflow to draft, preview, schedule if supported, publish, and retire announcements. Enforce administrator authorization on the server. Record actual status and delivery attempts; distinguish an announcement being published from a push notification being delivered. Never fabricate delivery confirmations.
+
+PRIVACY AND RESILIENCE
+Do not include passwords, payment details, private user data, or access tokens in notification payloads or logs. Handle offline state, expired sessions, provider outages, duplicate events, and invalid deep links. Store only necessary notification history and provide retention controls where appropriate.
+
+TESTS
+Test permission granted/denied, token registration and rotation, read states, preference changes, duplicate events, backend delivery failures, deep links, account switching, Android behavior, and admin access restrictions. Report whether push is configured, simulated, or unavailable; do not present mock notifications as real push delivery.

@@ -1,0 +1,451 @@
+Writing
+PART 2 — HEON HOME SCREEN AND GAME DISCOVERY
+ROLE AND CONTEXT
+Continue developing the existing HEON Android gaming application created in Part 1.
+Act as a senior Android application developer, UI/UX designer, frontend engineer, and gaming-platform product designer.
+Important instructions:
+Continue from the existing HEON project and preserve all working code.
+Do not restart the project or replace the established design system.
+Do not remove or break components, screens, navigation, authentication foundations, or services created in Part 1.
+Reuse existing components, colors, typography, spacing, navigation, and architectural patterns.
+Implement this part directly in the project files.
+Do not merely describe the implementation or return a mockup.
+Keep the application ready for the later parts of the master prompt, including accounts, downloads, notifications, payments, administration, backend integration, and Android APK packaging.
+1. OBJECTIVE
+Build a complete, polished, interactive HEON Home Screen and Game Discovery experience.
+The home screen should make HEON feel like a premium gaming platform where users can discover games, browse categories, view featured titles, explore recommendations, search for games, and open detailed game pages.
+The interface should feel cinematic, modern, fast, and professional—not like a basic template or a simple list of rectangular buttons.
+Use the design foundation from Part 1:
+Primary background: #08090D
+Secondary background: #11131A
+Card background: #191C26
+Neon-lime accent: #B9FF39
+Purple accent: #8B5CF6
+Blue accent: #38BDF8
+Primary text: #F7F8FC
+Secondary text: #A1A7B6
+Maintain consistent rounded corners, subtle borders, careful spacing, high-quality game artwork, smooth transitions, and readable typography.
+2. HOME SCREEN LAYOUT
+Build the home screen as a real application screen with working interactions and reusable components.
+2.1 Top Header
+Create a premium top header containing:
+HEON logo or wordmark.
+A short personalized greeting when the user is signed in.
+A profile avatar button.
+A notifications button.
+A search button or integrated search field, depending on the screen width.
+For example, the greeting may display:
+“Welcome back”
+“Ready for your next adventure?”
+“Discover something legendary.”
+Do not hardcode a real user's name. Use the authenticated user's profile when available, with a suitable fallback for guests.
+Header behavior:
+Tapping the logo returns to Home.
+Tapping the avatar opens the Profile screen or sign-in screen.
+Tapping Notifications opens the Notifications screen.
+Tapping Search opens the search interface.
+Show a notification badge only when unread notification data is available.
+Avoid displaying fake unread counts in production.
+Keep the header compact enough for mobile screens without making it feel crowded.
+2.2 Featured Game Hero
+Create a large cinematic featured-game section near the top of the Home screen.
+The hero should include:
+High-quality landscape artwork.
+A subtle dark gradient or overlay so text remains readable.
+Game title.
+Short promotional description.
+Genre labels.
+Rating or review information when reliable data exists.
+Optional “Featured” or “Editor's Pick” label.
+A primary View Game button.
+A secondary Add to Library or Save action when supported.
+Carousel indicators if multiple featured games are available.
+Design the hero to feel immersive, using carefully restrained animations and transitions.
+Behavior:
+Selecting the featured title opens its game details screen.
+Selecting View Game opens the corresponding game details screen.
+Selecting Add to Library saves the game through the application service layer.
+If the user is not signed in, explain that sign-in may be required to sync their library and offer the appropriate sign-in route.
+If the action fails, display a helpful error and allow the user to retry.
+Carousel controls must update the visible featured game correctly.
+Automatic carousel movement, if implemented, must not interfere with touch interaction or accessibility.
+Do not invent real ratings, review counts, download counts, awards, or popularity statistics. If the information is unavailable, omit it or label the content as sample data.
+3. PERSONALIZED HOME SECTIONS
+Create the following sections using reusable components.
+3.1 Continue Exploring
+Display recently viewed or recently interacted-with games when real history is available.
+Each game card may include:
+Artwork.
+Title.
+Genre.
+A concise status label where relevant.
+If the user has no history, show a welcoming empty state with a button to Discover Games.
+Do not pretend that the user has played or viewed a game when no such history exists.
+3.2 Trending Games
+Create a horizontal scrolling section for trending or popular games.
+Each card should display:
+Game cover artwork.
+Game title.
+Genre.
+Platform compatibility.
+Rating only if supported by trustworthy data.
+A subtle interaction or hover effect where applicable.
+Use real data from the connected catalog when available. If the project is running in demo mode, clearly identify demo content and do not present sample popularity metrics as live statistics.
+Provide a See All button that opens a discovery page filtered to trending games.
+3.3 Recently Added
+Display games that have recently been added to the HEON catalog.
+Each item should show:
+Cover image.
+Game title.
+Genre.
+Release or catalog-added date only when available and correctly identified.
+A clear route to the game's details page.
+The See All button should open a page showing the complete recently added collection.
+Do not fabricate release dates.
+3.4 Recommended for You
+Create a recommendation section that can later use a user's preferences, saved games, categories, and viewing history.
+For the initial implementation:
+Use available profile preferences if implemented.
+Otherwise, display general recommendations from the catalog.
+Clearly distinguish sample recommendations from personalized recommendations.
+Avoid claiming that a recommendation is personalized if no personalization data is available.
+Include a useful empty state if there are not enough games to recommend.
+3.5 Browse by Category
+Create visually appealing category cards or chips.
+Suggested categories include:
+Action
+Adventure
+Racing
+Role-Playing
+Strategy
+Simulation
+Sports
+Puzzle
+Horror
+Indie
+Multiplayer
+Casual
+Only display categories supported by the current catalog, unless clearly marked as demo categories.
+Category interactions:
+Selecting a category opens the Discover screen with that category selected.
+Provide a clear way to remove the selected filter.
+Preserve the user's current search or filter state where practical.
+Do not navigate to a blank page if a category has no games. Show an empty state with a way to explore other categories.
+3.6 Editor's Picks
+Create an optional curated collection for games selected by the platform's administrators.
+Each item may include:
+Artwork.
+Game title.
+A short editorial description.
+Category labels.
+A View Game action.
+When the backend and admin dashboard are implemented in later parts, this section should be capable of using the games that administrators actually mark as featured or selected.
+Do not invent editorial endorsements or claim a game has been officially selected unless the catalog contains that information.
+3.7 Recently Viewed
+If viewing history is supported, show a compact horizontal list of recently opened game pages.
+Allow users to reopen a game quickly.
+If there is no viewing history, hide the section or display a useful empty state without taking up excessive space.
+4. GAME CARD COMPONENTS
+Build reusable game card components instead of duplicating card markup across the application.
+Support suitable variants such as:
+Standard landscape card.
+Portrait cover card.
+Compact horizontal list item.
+Featured game card.
+Search result card.
+Recommended game card.
+Every card should support the fields available in the existing data model, including:
+Unique game ID.
+Title.
+Description.
+Cover image.
+Optional banner image.
+Categories or genres.
+Supported platforms.
+Optional developer and publisher.
+Optional release date.
+Optional rating and review information.
+Availability status.
+Optional catalog badges.
+Optional supported download or store links.
+Card behavior:
+Tapping the main card opens the game's details page.
+Tapping a separate save control adds or removes the game from the wishlist, where supported.
+Prevent a save-button tap from unintentionally opening the game page.
+Provide accessible labels for icon-only buttons.
+Display a loading placeholder while artwork loads.
+Use a graceful fallback when an image is unavailable.
+Handle long game titles without breaking the layout.
+Ensure the card works on small screens and with touch input.
+Use stable game IDs for list keys and data updates.
+Do not add decorative buttons that do nothing. Every visible interactive element must have a meaningful action or be clearly disabled.
+5. DISCOVER SCREEN
+Implement a complete Discover screen connected to the Home screen.
+The Discover screen should include:
+Page title and short introduction.
+Search field.
+Category filters.
+Sorting options.
+Optional platform filters.
+Optional genre filters.
+Game results grid or responsive card list.
+Result count when the data supports it.
+Loading, error, and empty states.
+A way to clear all filters.
+Suggested sorting options:
+Recommended
+Recently Added
+Title: A–Z
+Title: Z–A
+Highest Rated, only when reliable ratings exist
+Release Date, only when valid release dates exist
+Filtering and sorting must work with the actual loaded catalog data. Do not simply change the selected filter label while leaving the results unchanged.
+The layout must adapt to the screen width:
+Narrow phones: one-column or compact horizontal results where appropriate.
+Larger phones: a comfortable two-column grid when card sizes allow it.
+Tablets and larger displays: additional columns when there is enough room.
+Do not force a desktop-style layout onto small Android screens.
+6. SEARCH EXPERIENCE
+Build a functional search interface that can later connect to the backend.
+Search should support:
+Game titles.
+Available descriptions.
+Genres and categories.
+Developer or publisher names when present in the data.
+Case-insensitive matching.
+Leading and trailing whitespace handling.
+A clear-search control.
+Helpful empty states.
+A recent-search section if search history is implemented.
+A way to reopen a result's game details page.
+Search behavior:
+Search results should update correctly as the user types or submits a query.
+Do not perform unnecessary expensive work on every keystroke.
+If the backend supports remote search, use a suitable debouncing strategy.
+Cancel or ignore outdated remote responses so old results do not overwrite newer ones.
+Handle network failures gracefully.
+Do not expose private user data in search results.
+Never display another user's private search history.
+When the search field is empty, show useful discovery suggestions, supported categories, or trending content.
+When a search returns no results, show a clear message and suggestions such as checking spelling, clearing filters, or trying a different category.
+7. GAME CATALOG DATA
+Use the existing game model and service architecture from Part 1.
+If the project does not yet contain a suitable game model, implement one consistent with the following conceptual fields:
+id
+title
+slug
+description
+shortDescription
+coverImage
+bannerImage
+genres
+platforms
+developer
+publisher
+releaseDate
+catalogAddedAt
+rating
+reviewCount
+isFeatured
+isEditor'sPick
+availabilityStatus
+officialWebsite
+officialStoreUrl
+downloadOptions
+createdAt
+updatedAt
+Use the project's actual naming conventions if equivalent fields already exist. Avoid creating competing models that represent the same information.
+Separate catalog data access from UI components.
+For example, create or reuse a service interface that can:
+Retrieve featured games.
+Retrieve trending games.
+Retrieve recently added games.
+Retrieve recommended games.
+Retrieve games by category.
+Search the catalog.
+Retrieve a game's details.
+Retrieve games by sorting and filtering criteria.
+Adapt method names and file locations to the existing architecture.
+The UI should not need to know whether the data comes from:
+A local demo dataset.
+A remote API.
+Firebase.
+Another configured backend.
+Keep these data sources behind the service layer.
+8. DATA AND DEMO CONTENT
+If the backend is not yet configured, provide a small, varied demo catalog so that the screens can be tested immediately.
+Requirements:
+Use clearly identified sample data.
+Prefer original placeholder titles and properly licensed artwork.
+Do not bundle copyrighted commercial game files or unauthorized game copies.
+Do not hotlink random images from unreliable sources.
+Handle missing images gracefully.
+Keep demo data separate from production data.
+Do not mix sample metrics with real production metrics.
+Make it straightforward to replace the demo catalog with a real backend later.
+Use enough sample entries to demonstrate searching, filtering, categories, sorting, horizontal scrolling, and empty states.
+Do not create a huge artificial catalog merely to make the interface look populated.
+9. HOME SCREEN NAVIGATION
+Connect the Home and Discover screens to the navigation structure established in Part 1.
+The main navigation should continue to support:
+Home
+Discover
+Library
+Notifications
+Profile
+Use the existing navigation approach instead of introducing an incompatible second navigation system.
+On narrow screens, keep bottom navigation comfortable for thumb use.
+Ensure that:
+The active navigation item is visually clear.
+Navigation labels remain readable.
+The system Back action behaves sensibly.
+Search and category filters preserve state where appropriate.
+Opening a game and returning to the previous screen does not unnecessarily reset the user's place.
+Every navigation target exists or has a clear placeholder screen until its later implementation.
+Do not expose the admin dashboard to ordinary users through the main navigation. Its authorization and protected route will be completed in the relevant later part.
+10. LOADING, EMPTY, AND ERROR STATES
+Implement complete states for every major data-driven section.
+Loading:
+Use skeleton cards or restrained loading indicators.
+Avoid flashing large blank areas unnecessarily.
+Prevent repeated loading requests caused by avoidable re-renders.
+Empty:
+No featured games.
+No search results.
+No games in a category.
+No recent history.
+No recommendations.
+No available catalog entries.
+Error:
+Network unavailable.
+Catalog request failed.
+Invalid or missing game data.
+Artwork failed to load.
+Search request failed.
+For recoverable failures, provide a Retry action.
+Use clear, friendly language. Do not expose stack traces, API keys, internal server errors, or sensitive implementation details to users.
+Do not make error states look like successful results.
+11. ANIMATION AND PERFORMANCE
+Make the Home and Discover screens feel smooth and premium.
+Use:
+Short transitions between screen states.
+Subtle card press feedback.
+Smooth horizontal scrolling.
+Restrained hero transitions.
+Lightweight skeleton shimmer where appropriate.
+Small button and icon animations.
+Avoid:
+Excessive glowing effects.
+Large continuous animations that drain battery.
+Heavy visual effects on every card.
+Layout shifts when artwork loads.
+Animations that interfere with touch interaction.
+Motion that cannot be reduced when the operating system or application supports reduced-motion preferences.
+Performance requirements:
+Render lists efficiently.
+Use lazy loading or virtualization when supported by the chosen framework.
+Avoid unnecessary repeated catalog requests.
+Cache data and images appropriately.
+Keep scrolling responsive on lower-powered Android phones.
+Avoid oversized image downloads when smaller assets are sufficient.
+Handle network latency without freezing the interface.
+12. ACCESSIBILITY AND USABILITY
+Ensure that:
+Text has sufficient contrast.
+Buttons have comfortable touch targets.
+Icon-only controls have accessible names.
+Images have appropriate alternative descriptions where supported.
+Focus and keyboard navigation work where relevant.
+Text scaling does not destroy the layout.
+Filters and carousels can be operated without relying exclusively on gestures.
+Important information is not communicated through color alone.
+Empty and error states are understandable.
+Interactive elements have visible focus or pressed states where supported.
+Keep the visual identity premium without sacrificing usability.
+13. SECURITY AND CONTENT RULES
+The Home and Discover screens must follow these rules:
+Never expose API keys or server secrets in client code.
+Never trust client-side claims about payment status, account roles, or administrative privileges.
+Do not treat hidden UI elements as security protection.
+Validate external URLs before opening them.
+Do not automatically download or execute files simply because a game card is selected.
+Do not bypass Android permission prompts or security protections.
+Do not host or distribute unauthorized copyrighted game files.
+Use official or properly licensed game sources.
+Clearly distinguish available information from unavailable information.
+Do not claim that a game is available for Android unless the catalog supports that claim.
+Do not present an external store link as an in-app download if it redirects elsewhere.
+Later parts will add more complete authentication, download, payment, and administrative security. Build this part so those protections can be integrated without rewriting the Home screen.
+14. IMPLEMENTATION TASKS
+Complete these tasks in order:
+Task A — Inspect the project
+Inspect the current files, framework, components, models, and navigation.
+Identify which features already exist.
+Reuse existing code wherever possible.
+Do not overwrite working functionality unnecessarily.
+Task B — Build reusable game components
+Create or improve game cards.
+Create the featured hero component.
+Create reusable section headers, category chips, loading skeletons, and empty states.
+Keep styling consistent with Part 1.
+Task C — Implement the Home screen
+Add the header.
+Add the featured hero.
+Add supported discovery sections.
+Connect every visible action.
+Use actual service-layer data.
+Task D — Implement Discover
+Add search and filtering.
+Add sorting.
+Add responsive game results.
+Add clear-filter and empty-state behavior.
+Task E — Implement search
+Add query handling and result matching.
+Add clear-search behavior.
+Add helpful no-result and error states.
+Keep the implementation ready for remote search.
+Task F — Integrate navigation
+Connect Home, Discover, game details, and the existing main navigation.
+Preserve navigation state where practical.
+Ensure no visible button is broken.
+Task G — Verify the implementation
+Run the available project checks.
+Fix errors introduced by this part.
+Test search, sorting, filtering, card selection, and navigation.
+Check narrow mobile layouts.
+Do not claim tests passed if they were not run.
+Task H — Document the result
+Identify the files created or changed.
+Explain how the Home and Discover screens obtain their data.
+Identify demo-only behavior.
+List any backend integrations that still require configuration.
+15. ACCEPTANCE CRITERIA
+Part 2 is complete when:
+The HEON Home screen is visually polished and consistent with Part 1.
+The featured hero displays valid catalog data and opens the correct game.
+Reusable game cards display titles, artwork, and available metadata correctly.
+Home sections display data or appropriate empty states.
+Discover displays catalog results.
+Search actually filters the correct results.
+Category filters and sorting change the displayed results.
+Search, filtering, and sorting handle empty results gracefully.
+Game cards navigate to the appropriate details screen or a clearly identified temporary details placeholder.
+Main navigation remains functional.
+Loading and network-error states are handled.
+The layout works on narrow Android screens.
+Existing Part 1 functionality remains intact.
+No API secrets or private data are exposed.
+The project remains ready for Parts 3–10.
+The implementation status is reported honestly.
+16. FINAL INSTRUCTIONS
+Implement Part 2 directly in the existing HEON project.
+Do not return only a plan, explanation, or static design. Make the actual code changes supported by the current environment.
+Before finishing:
+Summarize the completed screens and interactions.
+List important files created or modified.
+Explain whether the catalog uses demo data, a configured backend, or both.
+Identify anything that still needs configuration.
+Report the checks you actually ran and their results.
+Clearly identify incomplete features instead of pretending they work.
+Preserve all working Part 1 functionality and keep the project ready for Part 3 — Game Details, Game Library, Wishlist, and Authorized Downloads.
+BEGIN IMPLEMENTING PART 2 NOW.

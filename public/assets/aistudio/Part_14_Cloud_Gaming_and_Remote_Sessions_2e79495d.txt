@@ -1,0 +1,21 @@
+HEON — PART 14: CLOUD GAMING, REMOTE GAME SESSIONS, REAL-TIME STREAMING, AND SESSION INFRASTRUCTURE
+
+Continue the existing HEON architecture. Treat cloud gaming as a provider integration, not a visual-only feature. Do not simulate a playable stream or claim remote games run without real server infrastructure.
+
+PROVIDER-NEUTRAL DESIGN
+Create a cloud-session adapter interface that can connect to a real provider when configured. Model session states such as requested, queued, provisioning, connecting, active, reconnecting, ending, completed, failed, and expired. Use real server responses and transition validation. Support idempotent start/end requests, timeouts, cleanup, and safe retry behavior.
+
+STREAMING AND CONTROLS
+If the provider supports it, integrate a suitable WebRTC or streaming client, adaptive quality, resolution/frame-rate settings, audio, latency display, network diagnostics, touch controls, gamepad support, keyboard support where appropriate, and reconnect behavior. Display network conditions honestly and avoid inventing latency or frame rate. Provide an accessible exit and connection status.
+
+INFRASTRUCTURE
+Cloud gaming requires actual compute/GPU capacity, game licensing, session orchestration, streaming transport, authentication, scaling, monitoring, and cost controls. Do not start expensive infrastructure automatically without explicit configured limits. Enforce per-account/session limits, provider authorization, idle timeout, and cleanup. Protect session tokens and never expose provider secrets in the client.
+
+PREMIUM AND ADMIN
+Check access and quotas through the trusted backend. Display plan restrictions only when configured. Provide admin visibility into actual sessions, capacity, errors, and costs; restrict sensitive data. Use audit logs for administrative actions.
+
+PRIVACY AND SECURITY
+Protect session signaling, validate origins and connection tokens, limit abuse, and avoid retaining streams or recordings unless explicitly designed and consented to. Handle network loss, provider outages, unauthorized sessions, and repeated connection attempts.
+
+TESTS AND REPORTING
+Test provider-unavailable, queue timeout, session expiry, reconnect, touch controls, network changes, quota limits, and cleanup. State clearly whether a real cloud provider is connected, a test adapter is used, or the feature remains unimplemented.

@@ -1,0 +1,18 @@
+HEON — PART 08: ADVANCED SEARCH, DISCOVERY, FILTERS, AND RECOMMENDATIONS
+
+Continue the existing HEON codebase and reuse its established design system and actual catalog API.
+
+SEARCH EXPERIENCE
+Create a prominent global search experience with query input, clear action, loading indicator, debounced requests where suitable, keyboard and touch support, recent searches, and suggestions based on real catalog data. Provide useful empty states and a clear way to recover from network errors. Escape and validate user input; never build unsafe database queries from raw search text.
+
+FILTERING AND SORTING
+Support filters only for fields actually present in the catalog, such as genre, platform, price/free status, compatibility, category, release/update date, and content type. Provide sort options such as relevance, title, recently updated, or popularity only when their data and definitions exist. Show active filters as removable chips and include a clear-all option. Keep filters usable on narrow Android screens.
+
+RESULTS
+Display game cards with verified artwork and metadata, consistent title treatment, platform badges, accessible labels, and actions that reflect real availability. Use pagination or infinite loading with stable cursors, deduplication, and appropriate loading placeholders. Provide search result counts only when accurately known.
+
+RECOMMENDATIONS
+Build transparent, optional recommendations using available signals such as selected genres, library items, and catalog metadata. Respect privacy and user preferences. If no real recommendation service exists, use clearly explainable catalog-based rules rather than pretending to use AI or hidden user analytics. Allow users to dismiss recommendations or adjust preferences.
+
+PRIVACY, PERFORMANCE, TESTS
+Do not expose private library data or search history to other accounts. Store search history only if needed and provide a clear option to clear it. Test empty queries, special characters, typos, no results, large catalogs, slow networks, pagination, filters, accessibility, and responsive behavior. Report any unsupported search features honestly.

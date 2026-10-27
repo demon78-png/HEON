@@ -1,0 +1,27 @@
+HEON — PART 20: PRODUCTION DEPLOYMENT, ANDROID APK/AAB BUILD, RELEASE SIGNING, DISTRIBUTION, AND LAUNCH PREPARATION
+
+Continue the existing HEON project. This is a production-readiness task, not permission to claim a deployment or APK exists without actually creating and verifying it. Inspect the project, build tools, backend, environment configuration, and platform requirements first.
+
+FINAL IMPLEMENTATION AUDIT
+Use the Part 19 feature matrix to identify what is real, partial, mocked, configuration-dependent, or missing. Resolve release blockers first. Preserve working features and produce a clear checklist of remaining work.
+
+ENVIRONMENTS AND BACKEND
+Separate development, staging, and production configuration. Keep credentials in environment variables or an appropriate secret manager; never place private keys in frontend code or commit them. Configure production database access, migrations, backups, storage, CORS, authentication callback URLs, payment webhooks, push services, monitoring, and logging as applicable. Use least-privilege credentials and verify restore procedures. Never run destructive migrations against production without a reviewed plan and backup.
+
+WEB RELEASE
+Create a reproducible production build and deploy only to a hosting provider that is actually configured and authorized. Verify the resulting URL, HTTPS, routes, assets, API connectivity, error handling, and mobile layout. If the provider is not connected, give exact setup steps and do not invent a URL. Configure PWA manifest/service worker only if appropriate; verify icons, cache updates, offline behavior, and recovery from a bad cache.
+
+ANDROID PACKAGING
+Determine whether the project is native Android, a supported hybrid wrapper such as Capacitor, or a web-only app. Choose a packaging approach compatible with the actual code. Configure application ID/package name, app label HEON, version name/code, icons, splash screen, supported SDK levels, permissions, network security, deep links, and privacy disclosures. Do not claim a web build is an APK. Build an APK for direct testing/distribution when appropriate and an Android App Bundle (AAB) for Play distribution where required. State exactly which artifact was produced.
+
+SIGNING AND SAFETY
+Use a secure release-signing process. Do not print, upload publicly, or commit keystore files, passwords, or private signing material. Document how the owner securely stores and backs up signing credentials. Debug-signed artifacts are not production release artifacts. Never silently install APKs; follow Android user-consent and package-installation rules.
+
+PRODUCTION INTEGRATIONS
+Verify that authentication, database, game catalog, authorized downloads, notifications, payment verification, admin controls, support, analytics, and any cloud gaming integration are genuinely configured. Test payment provider sandbox flows before live mode. Confirm admin accounts are provisioned through a trusted process. Remove mock data and development credentials from production.
+
+RELEASE CHECKLIST
+Verify privacy policy, terms, content rights, support route, data deletion process, age/content notices where applicable, permissions justification, crash reporting, versioning, release notes, backup/restore, and incident contacts. Run a production build, install the actual artifact on a supported Android device or emulator when available, test critical flows, and record results.
+
+DELIVERY REPORT
+Report actual deployment URL, artifact path/name, APK/AAB type, package ID, version, signing status, tests and devices used, known limitations, and remaining blockers. If any output cannot be produced because tools, credentials, or infrastructure are missing, say so and provide the next exact steps. Never fabricate a build, signature, URL, installation, or successful release.
